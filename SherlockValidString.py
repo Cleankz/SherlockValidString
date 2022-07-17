@@ -1,39 +1,39 @@
-def SherlockValidString(s):
-    str_to_list = list(s)
+def SherlockValidString(input_str): # s - input_str
+    str_to_list = list(input_str)
     count_array = []
     index = []
-    min = 0
-    max = 0
-    norm = 0 
-    other = 0
-    for str in s:
-        count = s.count(str)
+    count_of_min_num = 0 # min - count_of_min_num
+    count_of_max_num = 0 # max - count_of_max_num
+    count_of_equal_num = 0 # norm - count_of_equal_num
+    count_of_other_num = 0 # other - count_of_other_num
+    for str in input_str:
+        count_of_symb = input_str.count(str) # count - count_of_symb
         count_array.append(count)
-    sum = 0
+    count_symb = 0 # sum - count_symb
     for j in range(len(count_array) -1):
-        sum +=count_array[j]
-    mid = sum / len(s)
-    m = (mid % 1) * 10
+        count_symb +=count_array[j]
+    mid_of_str = sum / len(input_str) # mid - mid_of_str
+    m = (mid_of_str % 1) * 10
     if m >= 5:
-        m = (sum // len(s)) + 1
+        m = (sum // len(input_str)) + 1
     else:
-        m = (sum // len(s))
-    for i in range(len(s)):
-        if s.count(s[i]) < m:
-            min +=1
-        elif s.count(s[i]) > m:
-            max += 1
-        elif s.count(s[i]) == m:
-            norm += 1
-    if   min == 0 and max == 0 :
+        m = (sum // len(input_str))
+    for i in range(len(input_str)):
+        if input_str.count(input_str[i]) < m:
+            count_of_min_num +=1
+        elif input_str.count(input_str[i]) > m:
+            count_of_max_num += 1
+        elif input_str.count(input_str[i]) == m:
+            count_of_equal_num += 1
+    if   count_of_min_num == 0 and count_of_max_num == 0 :
         return True
-    elif min == 1 and max == 0 or max == 1 and min == 0:
+    elif count_of_min_num == 1 and count_of_max_num == 0 or count_of_max_num == 1 and count_of_min_num == 0:
         return True
-    elif norm - min == 1 or norm - max == 1:
+    elif count_of_equal_num - count_of_min_num == 1 or count_of_equal_num - count_of_max_num == 1:
         return True
-    elif min - norm == 1 and max == 0:
+    elif count_of_min_num - count_of_equal_num == 1 and count_of_max_num == 0:
         return True
-    elif max - norm == 1 and min == 0:
+    elif count_of_max_num - count_of_equal_num == 1 and count_of_min_num == 0:
         return True
     else:
         return False
